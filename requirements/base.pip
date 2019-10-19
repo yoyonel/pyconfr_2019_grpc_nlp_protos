@@ -1,0 +1,4 @@
+# GRPC
+grpcio
+grpcio-tools
+mypy-protobuf

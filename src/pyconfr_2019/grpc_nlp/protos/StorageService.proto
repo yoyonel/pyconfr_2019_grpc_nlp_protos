@@ -1,0 +1,18 @@
+syntax = "proto3";
+package pyconfr_2019.grpc_nlp;
+
+import "pyconfr_2019/grpc_nlp/protos/Tweet.proto";
+
+message StoreTweetsRequest {
+    Tweet tweet = 1;
+}
+
+message StoreTweetsResponse {
+    uint64 nb_tweets_received = 1;
+    uint64 nb_tweets_stored = 2;
+}
+
+// API
+service StorageService {
+    rpc StoreTweetsStream (stream StoreTweetsRequest) returns (StoreTweetsResponse) {}
+}

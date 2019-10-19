@@ -1,0 +1,7 @@
+syntax = "proto3";
+package pyconfr_2019.grpc_nlp;
+
+message Sentiment {
+    float polarity = 1;
+    float subjectivity = 2;
+}

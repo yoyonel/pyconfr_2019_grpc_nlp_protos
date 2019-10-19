@@ -1,0 +1,49 @@
+syntax = "proto3";
+package pyconfr_2019.grpc_nlp;
+
+import "pyconfr_2019/grpc_nlp/protos/Sentiment.proto";
+import "pyconfr_2019/grpc_nlp/protos/Timeline.proto";
+
+message ComputeGeneralSentimentOfUserRequest {
+    int64 user_id = 1;
+}
+
+message ComputeGeneralSentimentOfUserResponse {
+    Sentiment sentiment = 1;
+    Timeline timeline = 2;
+    int64 nb_tweets = 3;
+}
+
+message DetectLanguageFromTweetTextRequest {
+    uint64 tweet_id = 1;
+}
+
+message DetectLanguageFromTweetTextResponse {
+    string language = 1;
+    float score = 2;
+    string language_name = 3;
+    string text = 4;
+}
+
+message TopUsersRequest {
+    Timeline timeline = 1;
+}
+
+message TopUsersResponse {
+    int64 user_id = 1;
+    int64 nb_tweets = 2;
+}
+
+service TweetFeaturesService {
+    // Q: "qui sont les utilisateurs les plus présents sur une timeline Twitter ?"
+    rpc TopUsers (TopUsersRequest) returns (stream TopUsersResponse) {
+    }
+
+    // Q: "quel est le sentiment général des tweets (positif ou négatif) d’un utilisateur ?"
+    rpc ComputeGeneralSentimentOfUser (ComputeGeneralSentimentOfUserRequest) returns (ComputeGeneralSentimentOfUserResponse) {
+    }
+
+    // Q: "à partir du texte d’un tweet, est-il possible de deviner la langue dans lequel le tweet a été rédigé ?"
+    rpc DetectLanguageFromTweetText (DetectLanguageFromTweetTextRequest) returns (DetectLanguageFromTweetTextResponse) {
+    }
+}

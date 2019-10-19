@@ -1,0 +1,7 @@
+syntax = "proto3";
+package pyconfr_2019.grpc_nlp;
+
+message Timeline {
+    uint64 start = 1;
+    uint64 end = 2;
+}

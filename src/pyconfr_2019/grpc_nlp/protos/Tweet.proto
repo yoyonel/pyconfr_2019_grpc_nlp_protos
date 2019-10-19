@@ -1,0 +1,11 @@
+syntax = "proto3";
+package pyconfr_2019.grpc_nlp;
+
+message Tweet {
+    uint64 created_at = 1;
+    uint64 user_id = 2;
+    string text = 3;
+    string lang = 4;
+    uint64 tweet_id = 5;
+    string user_name = 6;
+}
