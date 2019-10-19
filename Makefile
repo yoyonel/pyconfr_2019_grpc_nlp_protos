@@ -45,6 +45,8 @@ build_proto_modules: ${PROTOS}
 	@echo "Build proto modules ..."
 	@python setup.py build_proto_modules
 
+sdist: ${SDIST_PACKAGE}
+
 ${SDIST_PACKAGE}: ${SOURCES}
 	@echo "Building python project..."
 	@python setup.py sdist
